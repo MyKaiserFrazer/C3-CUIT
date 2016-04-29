@@ -61,12 +61,13 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\C3HtmlBase.cs" />
+    <Compile Include="Base\HtmlBase.cs" />
     <Compile Include="CodedUITest1.cs" />
+    <Compile Include="Pages\LaunchOptionsPage.cs" />
     <Compile Include="Retired Code\Retired.cs" />
     <Compile Include="Test\CustomCUIT.cs" />
-    <Compile Include="Extensions\C3HtmlExtensions.cs" />
-    <Compile Include="Pages\C3LoginPage.cs" />
+    <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UIMap.cs" />
     <Compile Include="UIMap.Designer.cs" />

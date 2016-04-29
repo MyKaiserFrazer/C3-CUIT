@@ -258,3 +258,5 @@ paket-files/
 
 ###### -- Custom Ignore Section, Make sure all files you add to the git repo are below this line  --  ######
 
+C3-CUIT.7z
+C3-CUIT.zip

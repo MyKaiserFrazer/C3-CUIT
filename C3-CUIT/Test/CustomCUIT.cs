@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Windows.Input;
-using System.Windows.Forms;
-using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.VisualStudio.TestTools.UITest.Extension;
-using Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard;
-using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 using C3_CUIT.Base;
 using C3_CUIT.Pages;
-using C3_CUIT.Extensions;
 
 namespace C3_CUIT
 {
@@ -26,14 +17,17 @@ namespace C3_CUIT
         }
 
         [TestMethod]
-        public void CodedUITestMethod1()
+        public void TestMain()
         {
 
-            C3HtmlBase.ParentPage = BrowserWindow.Launch(new Uri("https://qa-apollo-nsp/us/c3/"));
+            HtmlBase.ParentPage = BrowserWindow.Launch(new Uri("https://qa-apollo-nsp/us/c3/"));
 
-            // DSL - Domain Specific Language
-            C3LoginPage loginPage = new C3LoginPage();
-            loginPage.LogIn("Coded UI Testing", "Natr123");
+            // login to C3
+            LoginPage loginPage = new LoginPage();
+            LaunchOptionsPage loPageObject = loginPage.LogIn("Coded UI Testing", "Natr123");
+
+            // click the United States link
+            loPageObject.ouClickUS();
         }
 
         #region Additional test attributes
