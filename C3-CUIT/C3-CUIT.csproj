@@ -63,7 +63,14 @@
   <ItemGroup>
     <Compile Include="Base\HtmlBase.cs" />
     <Compile Include="CodedUITest1.cs" />
+    <Compile Include="Configs\ConfigReader.cs" />
+    <Compile Include="Helpers\DatabaseHelper.cs" />
+    <Compile Include="Helpers\ExcelHelper.cs" />
+    <Compile Include="Helpers\LogHelper.cs" />
+    <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Pages\CustomCallCenterPage.cs" />
     <Compile Include="Pages\LaunchOptionsPage.cs" />
+    <Compile Include="Pages\SignUpApplicationPage.cs" />
     <Compile Include="Retired Code\Retired.cs" />
     <Compile Include="Test\CustomCUIT.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
@@ -72,8 +79,11 @@
     <Compile Include="UIMap.cs" />
     <Compile Include="UIMap.Designer.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Content Include="Configs\GlobalConfig.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="UIMap.uitest" />
   </ItemGroup>

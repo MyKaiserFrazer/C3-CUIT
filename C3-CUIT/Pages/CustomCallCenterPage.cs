@@ -9,35 +9,35 @@ using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 
 namespace C3_CUIT.Pages
 {
-    public class LaunchOptionsPage : HtmlBase
+    public class CustomCallCenterPage : HtmlBase
     {
         /// <summary>
         /// Constructor: Need to set the parent page for the Launch Options controls of that page
         /// </summary>
-        public LaunchOptionsPage()
+        public CustomCallCenterPage()
         {
-            SetParent("C3 - Authenticate/Launch");  // title of page need only contain part of this string. See SetParent in C3HtmlBase
+            SetParent("C3 - Custom Call Center");  // title of page need only contain part of this string. See SetParent in C3HtmlBase
         }
 
         /// <summary>
-        /// Set the property for the United States hyperlink control
+        /// Set the property for 
         /// </summary>
-        public HtmlHyperlink lnkUnitedStates
+        public HtmlHyperlink lnkSignUpWithOrder
         {
             get
             {
-                return SetProperty<HtmlHyperlink>(PropertyType.Href, "http://qa-apollo-nsp/us/c3/");
+                return SetProperty<HtmlHyperlink>(PropertyType.Href, "https://qa-apollo-nsp/us/c3/ApplicationSignUp?type=order");
             }
         }
-        
+
         /// <summary>
-        /// Click the United States link
+        /// Method specific for this page
         /// </summary>
         /// <param name="operatingUnit"></param>
-        public CustomCallCenterPage ouClickUS()
+        public SignUpApplicationPage ClickSignUpWithOrder()
         {
-            lnkUnitedStates.Click();
-            return new CustomCallCenterPage();
+            lnkSignUpWithOrder.Click();
+            return new SignUpApplicationPage();
         }
 
     }

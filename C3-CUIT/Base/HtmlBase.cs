@@ -15,7 +15,6 @@ namespace C3_CUIT.Base
     public class HtmlBase
     {
         public static BrowserWindow ParentPage;
-        //private BrowserWindow mParentWindow { get; set; }     // *** ToDo *** Work in progress to re-identify current parent page
 
         public void SetParent(string title)
         {
@@ -61,27 +60,5 @@ namespace C3_CUIT.Base
                 control.SearchProperties[HtmlControl.PropertyNames.InnerText] = identificationValue;
             return control;
         }
-
-    /// *** ToDo *** This is work in progress to always keep track of which page is the parent page
-    //    public BrowserWindow TopParentWindow()
-    //    {
-    //        BrowserWindow window = new BrowserWindow();
-    //        window.SearchProperties[UITestControl.PropertyNames.ClassName] = BrowserWindow.CurrentBrowser.ToString();
-    //        return window;
-    //    }
-
-    //    public BrowserWindow ParentWindow
-    //    {
-    //        get
-    //        {
-    //            // First time
-    //            if(this.mParentWindow == null)
-    //            {
-    //                this.mParentWindow = TopParentWindow();
-    //            }
-    //            return mParentWindow;
-    //        }
-    //    }
-
     }
 }

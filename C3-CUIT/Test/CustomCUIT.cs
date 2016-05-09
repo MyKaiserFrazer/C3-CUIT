@@ -27,7 +27,15 @@ namespace C3_CUIT
             LaunchOptionsPage loPageObject = loginPage.LogIn("Coded UI Testing", "Natr123");
 
             // click the United States link
-            loPageObject.ouClickUS();
+            CustomCallCenterPage cccpObject = loPageObject.ouClickUS();
+
+            // click Sign Up With Order link
+            SignUpApplicationPage SignUpAppPageObject = cccpObject.ClickSignUpWithOrder();
+
+            // Fill in Sign-Up Application Form
+            SignUpAppPageObject.FillInSignUpApplicationForm();
+
+
         }
 
         #region Additional test attributes
