@@ -29,8 +29,21 @@ namespace C3_CUIT.Extensions
         /// <param name="text"></param>
         public static void EnterText(this HtmlControl control, string text)
         {
-            control.SetProperty("Text", "");    // clear the control first before entering new text
+            //control.SetProperty("Text", "");    // clear the control first before entering new text
             Keyboard.SendKeys(control, text);
+        }
+
+        /// <summary>
+        /// Takes a string and concatenates a 5 digit number onto the end
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="text"></param>
+        public static void addRandomName(this HtmlControl control, string text)
+        {
+            control.SetProperty("Text", "");
+            Random rnd = new Random();
+            int ran = rnd.Next(10000, 99999);
+            Keyboard.SendKeys(text + ran);
         }
     }
 }

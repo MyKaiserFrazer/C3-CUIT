@@ -19,7 +19,7 @@ namespace C3_CUIT
         [TestMethod]
         public void TestMain()
         {
-
+            BrowserWindow.CurrentBrowser = "chrome";
             HtmlBase.ParentPage = BrowserWindow.Launch(new Uri("https://qa-apollo-nsp/us/c3/"));
 
             // login to C3
