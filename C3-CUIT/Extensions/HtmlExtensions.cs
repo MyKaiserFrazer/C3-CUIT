@@ -40,10 +40,10 @@ namespace C3_CUIT.Extensions
         /// <param name="text"></param>
         public static void addRandomName(this HtmlControl control, string text)
         {
-            control.SetProperty("Text", "");
-            Random rnd = new Random();
-            int ran = rnd.Next(10000, 99999);
-            Keyboard.SendKeys(text + ran);
+            control.SetProperty("Text", "");    // clear out what might already be there
+            Random rnd = new Random();          // instantiate a Random() object
+            int ran = rnd.Next(10000, 99999);   // get a 5 digit random number
+            Keyboard.SendKeys(text + ran);      // append the number to text
         }
     }
 }

@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using C3_CUIT.Base;
 using C3_CUIT.Pages;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace C3_CUIT
 {
@@ -15,12 +17,17 @@ namespace C3_CUIT
         public CustomCUIT()
         {
         }
+        
+    [TestInitialize]
+    public void Initialize()
+        {
+            BrowserWindow.CurrentBrowser = "chrome";
+            HtmlBase.ParentPage = BrowserWindow.Launch(new Uri("https://qa-apollo-nsp/us/c3/"));
+        }
 
         [TestMethod]
         public void TestMain()
         {
-            BrowserWindow.CurrentBrowser = "chrome";
-            HtmlBase.ParentPage = BrowserWindow.Launch(new Uri("https://qa-apollo-nsp/us/c3/"));
 
             // login to C3
             LoginPage loginPage = new LoginPage();
@@ -35,7 +42,28 @@ namespace C3_CUIT
             // Fill in Sign-Up Application Form
             SignUpAppPageObject.FillInSignUpApplicationForm();
 
+        }
 
+        [TestCleanup]
+        public void cleanMethod()
+        {
+            Console.WriteLine("Test Cleanup");
+
+            if(TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
+            {
+                Image image = UITestControl.Desktop.CaptureImage();
+                image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" + TestContext.TestName + "Fail" + ".jpeg", ImageFormat.Jpeg);
+            }
+            else if(TestContext.CurrentTestOutcome == UnitTestOutcome.Error)
+            {
+                Image image = UITestControl.Desktop.CaptureImage();
+                image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" + TestContext.TestName + "Error" + ".jpeg", ImageFormat.Jpeg);
+            }
+            else if (TestContext.CurrentTestOutcome == UnitTestOutcome.Passed)
+            {
+                Image image = UITestControl.Desktop.CaptureImage();
+                image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" + TestContext.TestName + "Pass" + ".jpeg", ImageFormat.Jpeg);
+            }
         }
 
         #region Additional test attributes

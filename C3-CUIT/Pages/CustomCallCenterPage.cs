@@ -36,7 +36,7 @@ namespace C3_CUIT.Pages
         /// <param name="operatingUnit"></param>
         public SignUpApplicationPage ClickSignUpWithOrder()
         {
-            lnkSignUpWithOrder.Click();
+            HtmlExtensions.Click(lnkSignUpWithOrder);
             return new SignUpApplicationPage();
         }
 

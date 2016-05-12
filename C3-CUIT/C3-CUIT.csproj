@@ -71,6 +71,7 @@
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Pages\CustomCallCenterPage.cs" />
     <Compile Include="Pages\LaunchOptionsPage.cs" />
+    <Compile Include="Pages\PaymentInformationPage.cs" />
     <Compile Include="Pages\SignUpApplicationPage.cs" />
     <Compile Include="Retired Code\Retired.cs" />
     <Compile Include="Test\CustomCUIT.cs" />
@@ -85,6 +86,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Scenario1.orderedtest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="UIMap.uitest" />
   </ItemGroup>

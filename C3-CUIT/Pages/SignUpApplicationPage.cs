@@ -351,7 +351,7 @@ namespace C3_CUIT.Pages
         }
 
         /// <summary>
-        /// Setup the Is this your primary control (for phone).
+        /// Setup the Is this your primary phone control (for phone).
         /// </summary>
         public HtmlComboBox cboIsPrimaryPhone
         {
@@ -375,14 +375,14 @@ namespace C3_CUIT.Pages
         /// <summary>
         /// Fills out the controls on the Phone Number Form
         /// </summary>
-        private void clickAddNewPhoneNumber()
+        private void addNewPhoneNumber()
         {
-            lnkAddEditPhoneNumber.Click();
-            txtPhoneNumber.EnterText("8888888888");
-            cboPhoneType.Click();
-            cboAllowTextMessages.Click();
-            cboIsPrimaryPhone.Click();
-            btnSubmitPhoneInfo.Click();
+            HtmlExtensions.Click(lnkAddEditPhoneNumber);
+            HtmlExtensions.EnterText(txtPhoneNumber, "8888888888");
+            HtmlExtensions.Click(cboPhoneType);
+            HtmlExtensions.Click(cboAllowTextMessages);
+            HtmlExtensions.Click(cboIsPrimaryPhone);
+            HtmlExtensions.Click(btnSubmitPhoneInfo);
         }
 
         /// <summary>
@@ -547,46 +547,46 @@ namespace C3_CUIT.Pages
         /// <param name="operatingUnit"></param>
         public void FillInSignUpApplicationForm()
         {
-            cboSignUpAppCustomerType.Click();
-            cboSignUpAppAccountType.Click();
-            txtFinderAccountNumber.EnterText("76334");
+            HtmlExtensions.Click(cboSignUpAppCustomerType);
+            HtmlExtensions.Click(cboSignUpAppAccountType);
+            HtmlExtensions.EnterText(txtFinderAccountNumber, "76334");
             //EnterFAN("76334");    //bypasses the framework
-            txtSponsorAccountNumber.EnterText("78686");
+            HtmlExtensions.EnterText(txtSponsorAccountNumber, "78686");
             //EnterSAN("78686");    //bypasses the framework
-            cboCommissionPlan.Click();
-            cboContactNamePrefix.Click();
-            txtContactFirstName.EnterText("Donald");
-            txtContactMiddleName.EnterText("J.");
-            txtContactLastName.EnterText("Trump");
-            txtContactNameSuffix.EnterText("I");
-            cboContactLanguage.Click();
-            cboContactGender.Click();
-            txtContactBirthDate.EnterText("6/14/1946");
-            clickAddNewPhoneNumber();   // this is a popup modal window
-            txtEmailAddress.EnterText("djtrump@nodomain.com");
-            txtUsername.addRandomName("djtrump");
-            txtPassword.EnterText("test123");
-            txtPasswordConfirmation.EnterText("test123");
-            txtCallInAuthentication.EnterText("IamTheSmartestPersonIKnow");
-            txtAccountName.Click();
-            txtAccountNameLegal.Click();
-            txtMailingName.Click();
-            txtLine1DefaultMailing.EnterText("125 E Main St");
-            txtCityDefaultMailing.EnterText("Rochester");
+            HtmlExtensions.Click(cboCommissionPlan);
+            HtmlExtensions.Click(cboContactNamePrefix);
+            HtmlExtensions.EnterText(txtContactFirstName, "Donald");
+            HtmlExtensions.EnterText(txtContactMiddleName, "J.");
+            HtmlExtensions.EnterText(txtContactLastName, "Trump");
+            HtmlExtensions.EnterText(txtContactNameSuffix, "I");
+            HtmlExtensions.Click(cboContactLanguage);
+            HtmlExtensions.Click(cboContactGender);
+            HtmlExtensions.EnterText(txtContactBirthDate, "6/14/1946");
+            addNewPhoneNumber();   // this is a popup modal window
+            HtmlExtensions.EnterText(txtEmailAddress,"djtrump@nodomain.com");
+            HtmlExtensions.addRandomName(txtUsername,"djtrump");
+            HtmlExtensions.EnterText(txtPassword,"test123");
+            HtmlExtensions.EnterText(txtPasswordConfirmation,"test123");
+            HtmlExtensions.EnterText(txtCallInAuthentication,"IamTheSmartestPersonIKnow");
+            HtmlExtensions.Click(txtAccountName);
+            HtmlExtensions.Click(txtAccountNameLegal);
+            HtmlExtensions.Click(txtMailingName);
+            HtmlExtensions.EnterText(txtLine1DefaultMailing,"125 E Main St");
+            HtmlExtensions.EnterText(txtCityDefaultMailing,"Rochester");
             cboSubdivision.SelectedIndex = 37;
-            txtPostalCode.EnterText("146041601");
-            txtPhoneNumDefMailing.Click();
-            txtEmailAddressDefaultMailing.Click();
-            cboShippingSameAsMailing.Click();
-            txtNameDefaultShipping.Click();
-            txtAddrLine1DefaultShipping.EnterText("125 E Main St");
-            txtAddrLine2DefaultShipping.EnterText("");
-            txtCityDefaultShipping.EnterText("Rochester");
+            HtmlExtensions.EnterText(txtPostalCode,"146041601");
+            HtmlExtensions.Click(txtPhoneNumDefMailing);
+            HtmlExtensions.Click(txtEmailAddressDefaultMailing);
+            HtmlExtensions.Click(cboShippingSameAsMailing);
+            HtmlExtensions.Click(txtNameDefaultShipping);
+            HtmlExtensions.EnterText(txtAddrLine1DefaultShipping,"125 E Main St");
+            HtmlExtensions.EnterText(txtAddrLine2DefaultShipping, "");
+            HtmlExtensions.EnterText(txtCityDefaultShipping,"Rochester");
             cboSubdivisionDefaultShipping.SelectedIndex = 37;
-            txtPostalCodeDefaultShipping.EnterText("14604-1601");
-            txtPhoneNumDefShipping.Click();
-            txtEmailAddressDefaultShipping.Click();
-            btnSubmitAccountSignUp.Click();
+            HtmlExtensions.EnterText(txtPostalCodeDefaultShipping,"14604-1601");
+            HtmlExtensions.Click(txtPhoneNumDefShipping);
+            HtmlExtensions.Click(txtEmailAddressDefaultShipping);
+            HtmlExtensions.Click(btnSubmitAccountSignUp);
         }
     }
 }

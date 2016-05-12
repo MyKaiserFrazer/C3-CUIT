@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<OrderedTest name="Scenario1" storage="c:\users\jsteele.desktop-6huun3s\documents\visual studio 2015\projects\c3-cuit\c3-cuit\scenario1.orderedtest" id="01b16211-4cb3-4d3a-92d8-423875740cf4" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestLinks>
+    <TestLink id="fbdb433c-da0f-374d-bf20-81ed490d4fbf" name="TestMain" storage="bin\debug\c3-cuit.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </TestLinks>
+</OrderedTest>

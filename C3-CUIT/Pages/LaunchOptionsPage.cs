@@ -36,7 +36,7 @@ namespace C3_CUIT.Pages
         /// <param name="operatingUnit"></param>
         public CustomCallCenterPage ouClickUS()
         {
-            lnkUnitedStates.Click();
+            HtmlExtensions.Click(lnkUnitedStates);
             return new CustomCallCenterPage();
         }
 

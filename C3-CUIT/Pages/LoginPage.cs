@@ -56,9 +56,9 @@ namespace C3_CUIT.Pages
         /// <returns></returns>
         public LaunchOptionsPage LogIn(string userName, string passWord)
         {
-            txtUserName.EnterText("Coded UI Testing");
-            txtPassword.EnterText("Natr123");
-            btnSignInButton.Click();
+            HtmlExtensions.EnterText(txtUserName,userName);
+            HtmlExtensions.EnterText(txtPassword,passWord);
+            HtmlExtensions.Click(btnSignInButton);
             return new LaunchOptionsPage();
         }
     }
