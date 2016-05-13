@@ -20,7 +20,7 @@ namespace C3_CUIT.Base
         {
             ParentPage.SearchProperties.Add("Name", title, PropertyExpressionOperator.Contains);
         }
-
+        
         public enum PropertyType
         {
             Name,

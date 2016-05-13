@@ -26,7 +26,7 @@ namespace C3_CUIT.Pages
         {
             get
             {
-                return SetProperty<HtmlHyperlink>(PropertyType.Href, "https://qa-apollo-nsp/us/c3/ApplicationSignUp?type=order");
+                return SetProperty<HtmlHyperlink>(PropertyType.Href, "https://test-apollo-nsp/us/c3/ApplicationSignUp?type=order");
             }
         }
 

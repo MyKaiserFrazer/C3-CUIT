@@ -22,7 +22,7 @@ namespace C3_CUIT
     public void Initialize()
         {
             BrowserWindow.CurrentBrowser = "chrome";
-            HtmlBase.ParentPage = BrowserWindow.Launch(new Uri("https://qa-apollo-nsp/us/c3/"));
+            HtmlBase.ParentPage = BrowserWindow.Launch(new Uri("https://test-apollo-nsp/us/c3/"));
         }
 
         [TestMethod]

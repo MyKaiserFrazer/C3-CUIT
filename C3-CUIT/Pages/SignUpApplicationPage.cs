@@ -547,6 +547,7 @@ namespace C3_CUIT.Pages
         /// <param name="operatingUnit"></param>
         public void FillInSignUpApplicationForm()
         {
+            cboSignUpAppCustomerType.SelectedIndex = 0; // 0=Retail 1=Distributor
             HtmlExtensions.Click(cboSignUpAppCustomerType);
             HtmlExtensions.Click(cboSignUpAppAccountType);
             HtmlExtensions.EnterText(txtFinderAccountNumber, "76334");
@@ -573,7 +574,7 @@ namespace C3_CUIT.Pages
             HtmlExtensions.Click(txtMailingName);
             HtmlExtensions.EnterText(txtLine1DefaultMailing,"125 E Main St");
             HtmlExtensions.EnterText(txtCityDefaultMailing,"Rochester");
-            cboSubdivision.SelectedIndex = 37;
+             cboSubdivision.SelectedIndex = 37;
             HtmlExtensions.EnterText(txtPostalCode,"146041601");
             HtmlExtensions.Click(txtPhoneNumDefMailing);
             HtmlExtensions.Click(txtEmailAddressDefaultMailing);
