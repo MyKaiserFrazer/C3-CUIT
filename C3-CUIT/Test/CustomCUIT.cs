@@ -37,11 +37,18 @@ namespace C3_CUIT
             CustomCallCenterPage cccpObject = loPageObject.ouClickUS();
 
             // click Sign Up With Order link
-            SignUpApplicationPage SignUpAppPageObject = cccpObject.ClickSignUpWithOrder();
+            SignUpApplicationPage signUpAppPageObject = cccpObject.ClickSignUpWithOrder();
 
             // Fill in Sign-Up Application Form
-            SignUpAppPageObject.FillInSignUpApplicationForm();
+            OrderEntryPage orderEntryPage = signUpAppPageObject.FillInSignUpApplicationForm();
 
+            // Bring up the Add Item dialogue on the Order Entry Page
+            orderEntryPage.OpenCart();
+            orderEntryPage.EnterCartItem("558","2");      // itemId 558 = Red Yeast Rice, 120 caps, 2 bottles
+            orderEntryPage.EnterCartItem("1828","1");     // itemId 1828 = Colostrum, 90 caps, 1 bottle
+            orderEntryPage.SubmitCart();        // click the "add to cart" button
+
+            //Assert.AreEqual(orderEntryPage.IsProductInCart("Red Yeast Rice (120 Caps)"),"Expected this product to be in the cart");
         }
 
         [TestCleanup]
@@ -52,17 +59,20 @@ namespace C3_CUIT
             if(TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
             {
                 Image image = UITestControl.Desktop.CaptureImage();
-                image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" + TestContext.TestName + "Fail" + ".jpeg", ImageFormat.Jpeg);
+                image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" +
+                    TestContext.TestName + "Fail" + ".jpeg", ImageFormat.Jpeg);
             }
             else if(TestContext.CurrentTestOutcome == UnitTestOutcome.Error)
             {
                 Image image = UITestControl.Desktop.CaptureImage();
-                image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" + TestContext.TestName + "Error" + ".jpeg", ImageFormat.Jpeg);
+                image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" +
+                    TestContext.TestName + "Error" + ".jpeg", ImageFormat.Jpeg);
             }
             else if (TestContext.CurrentTestOutcome == UnitTestOutcome.Passed)
             {
                 Image image = UITestControl.Desktop.CaptureImage();
-                image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" + TestContext.TestName + "Pass" + ".jpeg", ImageFormat.Jpeg);
+                image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" +
+                    TestContext.TestName + "Pass" + ".jpeg", ImageFormat.Jpeg);
             }
         }
 

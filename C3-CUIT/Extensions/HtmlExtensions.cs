@@ -45,5 +45,12 @@ namespace C3_CUIT.Extensions
             int ran = rnd.Next(10000, 99999);   // get a 5 digit random number
             Keyboard.SendKeys(text + ran);      // append the number to text
         }
+
+        public static int rndNum()
+        {
+            Random rnd = new Random();
+            int rNum = rnd.Next(100, 999);
+            return rNum;
+        }
     }
 }

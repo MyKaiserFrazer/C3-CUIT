@@ -545,9 +545,9 @@ namespace C3_CUIT.Pages
         /// Method specific for this page
         /// </summary>
         /// <param name="operatingUnit"></param>
-        public void FillInSignUpApplicationForm()
+        public OrderEntryPage FillInSignUpApplicationForm()
         {
-            cboSignUpAppCustomerType.SelectedIndex = 0; // 0=Retail 1=Distributor
+            cboSignUpAppCustomerType.SelectedIndex = 0; // select 'Retail' 1460416010=Retail 1=Distributor
             HtmlExtensions.Click(cboSignUpAppCustomerType);
             HtmlExtensions.Click(cboSignUpAppAccountType);
             HtmlExtensions.EnterText(txtFinderAccountNumber, "76334");
@@ -565,7 +565,7 @@ namespace C3_CUIT.Pages
             HtmlExtensions.EnterText(txtContactBirthDate, "6/14/1946");
             addNewPhoneNumber();   // this is a popup modal window
             HtmlExtensions.EnterText(txtEmailAddress,"djtrump@nodomain.com");
-            HtmlExtensions.addRandomName(txtUsername,"djtrump");
+            HtmlExtensions.addRandomName(txtUsername,"C3AutomationTest");
             HtmlExtensions.EnterText(txtPassword,"test123");
             HtmlExtensions.EnterText(txtPasswordConfirmation,"test123");
             HtmlExtensions.EnterText(txtCallInAuthentication,"IamTheSmartestPersonIKnow");
@@ -574,7 +574,7 @@ namespace C3_CUIT.Pages
             HtmlExtensions.Click(txtMailingName);
             HtmlExtensions.EnterText(txtLine1DefaultMailing,"125 E Main St");
             HtmlExtensions.EnterText(txtCityDefaultMailing,"Rochester");
-             cboSubdivision.SelectedIndex = 37;
+            cboSubdivision.SelectedIndex = 37;     // selects the state of New York
             HtmlExtensions.EnterText(txtPostalCode,"146041601");
             HtmlExtensions.Click(txtPhoneNumDefMailing);
             HtmlExtensions.Click(txtEmailAddressDefaultMailing);
@@ -583,11 +583,12 @@ namespace C3_CUIT.Pages
             HtmlExtensions.EnterText(txtAddrLine1DefaultShipping,"125 E Main St");
             HtmlExtensions.EnterText(txtAddrLine2DefaultShipping, "");
             HtmlExtensions.EnterText(txtCityDefaultShipping,"Rochester");
-            cboSubdivisionDefaultShipping.SelectedIndex = 37;
+            cboSubdivisionDefaultShipping.SelectedIndex = 37;   // selects the state of New York
             HtmlExtensions.EnterText(txtPostalCodeDefaultShipping,"14604-1601");
             HtmlExtensions.Click(txtPhoneNumDefShipping);
             HtmlExtensions.Click(txtEmailAddressDefaultShipping);
             HtmlExtensions.Click(btnSubmitAccountSignUp);
+            return new OrderEntryPage();
         }
     }
 }
