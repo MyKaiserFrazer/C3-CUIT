@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using C3_CUIT.Base;
+﻿using C3_CUIT.Base;
 using C3_CUIT.Extensions;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 using Microsoft.VisualStudio.TestTools.UITesting;
@@ -564,30 +559,33 @@ namespace C3_CUIT.Pages
             HtmlExtensions.Click(cboContactGender);
             HtmlExtensions.EnterText(txtContactBirthDate, "6/14/1946");
             addNewPhoneNumber();   // this is a popup modal window
-            HtmlExtensions.EnterText(txtEmailAddress,"djtrump@nodomain.com");
-            HtmlExtensions.addRandomName(txtUsername,"C3AutomationTest");
-            HtmlExtensions.EnterText(txtPassword,"test123");
-            HtmlExtensions.EnterText(txtPasswordConfirmation,"test123");
-            HtmlExtensions.EnterText(txtCallInAuthentication,"IamTheSmartestPersonIKnow");
+            HtmlExtensions.EnterText(txtEmailAddress, "djtrump@nodomain.com");
+            HtmlExtensions.addRandomName(txtUsername);
+            HtmlExtensions.EnterText(txtPassword, "Test1234");
+            HtmlExtensions.EnterText(txtPasswordConfirmation, "Test1234");
+            HtmlExtensions.EnterText(txtCallInAuthentication, "Test1234");
             HtmlExtensions.Click(txtAccountName);
             HtmlExtensions.Click(txtAccountNameLegal);
             HtmlExtensions.Click(txtMailingName);
-            HtmlExtensions.EnterText(txtLine1DefaultMailing,"125 E Main St");
-            HtmlExtensions.EnterText(txtCityDefaultMailing,"Rochester");
+            HtmlExtensions.EnterText(txtLine1DefaultMailing, "125 E Main St");
+            HtmlExtensions.EnterText(txtCityDefaultMailing, "Rochester");
             cboSubdivision.SelectedIndex = 37;     // selects the state of New York
-            HtmlExtensions.EnterText(txtPostalCode,"146041601");
+            HtmlExtensions.EnterText(txtPostalCode, "146041601");
             HtmlExtensions.Click(txtPhoneNumDefMailing);
             HtmlExtensions.Click(txtEmailAddressDefaultMailing);
             HtmlExtensions.Click(cboShippingSameAsMailing);
             HtmlExtensions.Click(txtNameDefaultShipping);
-            HtmlExtensions.EnterText(txtAddrLine1DefaultShipping,"125 E Main St");
+            HtmlExtensions.EnterText(txtAddrLine1DefaultShipping, "125 E Main St");
             HtmlExtensions.EnterText(txtAddrLine2DefaultShipping, "");
-            HtmlExtensions.EnterText(txtCityDefaultShipping,"Rochester");
+            HtmlExtensions.EnterText(txtCityDefaultShipping, "Rochester");
             cboSubdivisionDefaultShipping.SelectedIndex = 37;   // selects the state of New York
-            HtmlExtensions.EnterText(txtPostalCodeDefaultShipping,"14604-1601");
+            HtmlExtensions.EnterText(txtPostalCodeDefaultShipping, "14604-1601");
             HtmlExtensions.Click(txtPhoneNumDefShipping);
             HtmlExtensions.Click(txtEmailAddressDefaultShipping);
             HtmlExtensions.Click(btnSubmitAccountSignUp);
+
+            Playback.Wait(5000);
+
             return new OrderEntryPage();
         }
     }

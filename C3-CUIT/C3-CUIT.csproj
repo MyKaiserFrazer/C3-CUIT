@@ -72,6 +72,7 @@
     <Compile Include="Pages\CustomCallCenterPage.cs" />
     <Compile Include="Pages\LaunchOptionsPage.cs" />
     <Compile Include="Pages\OrderEntryPage.cs" />
+    <Compile Include="Pages\OrderHistoryPage.cs" />
     <Compile Include="Pages\PaymentInformationPage.cs" />
     <Compile Include="Pages\SignUpApplicationPage.cs" />
     <Compile Include="Retired Code\Retired.cs" />

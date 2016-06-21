@@ -1,17 +1,11 @@
 ﻿using C3_CUIT.Base;
-using C3_CUIT.Extensions;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace C3_CUIT.Pages
 {
     public class PaymentInformationPage : HtmlBase
     {
-            
+
         /// <summary>
         /// Constructor: Need to set the parent page for the Launch Options controls of that page
         /// </summary>

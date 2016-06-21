@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using C3_CUIT.Base;
 using C3_CUIT.Pages;
+using C3_CUIT.Extensions;
 using System.Drawing;
 using System.Drawing.Imaging;
 
@@ -17,18 +18,17 @@ namespace C3_CUIT
         public CustomCUIT()
         {
         }
-        
-    [TestInitialize]
-    public void Initialize()
+
+        [TestInitialize]
+        public void Initialize()
         {
-            BrowserWindow.CurrentBrowser = "chrome";
+            BrowserWindow.CurrentBrowser = "Chrome";
             HtmlBase.ParentPage = BrowserWindow.Launch(new Uri("https://test-apollo-nsp/us/c3/"));
         }
 
         [TestMethod]
-        public void TestMain()
+        public void SignUpWithOrder()
         {
-
             // login to C3
             LoginPage loginPage = new LoginPage();
             LaunchOptionsPage loPageObject = loginPage.LogIn("Coded UI Testing", "Natr123");
@@ -41,38 +41,50 @@ namespace C3_CUIT
 
             // Fill in Sign-Up Application Form
             OrderEntryPage orderEntryPage = signUpAppPageObject.FillInSignUpApplicationForm();
+            //Playback.Wait(5000);
 
-            // Bring up the Add Item dialogue on the Order Entry Page
+            // click the 'add item' button in preparation to enter items onto the cart
             orderEntryPage.OpenCart();
-            orderEntryPage.EnterCartItem("558","2");      // itemId 558 = Red Yeast Rice, 120 caps, 2 bottles
-            orderEntryPage.EnterCartItem("1828","1");     // itemId 1828 = Colostrum, 90 caps, 1 bottle
-            orderEntryPage.SubmitCart();        // click the "add to cart" button
 
-            //Assert.AreEqual(orderEntryPage.IsProductInCart("Red Yeast Rice (120 Caps)"),"Expected this product to be in the cart");
+            // Enter items into the cart
+            // OrderHistoryPage orderHistoryPage = orderEntryPage.EnterCartItems();
+            orderEntryPage.EnterCartItems();
+            //Playback.Wait(3000);
+
+            // Go to Payment Information and add a Credit Card, add payment to CC
+            orderEntryPage.pmtInfo();
+
+            // Click Submit Order to complete the transaction. Return a OrderHistoryPage object 
+            // in preparation to go to that page and do some validation with Assertions.
+            OrderHistoryPage ordHistPage = orderEntryPage.submitCompleteOrder();
+
+            // Do some asserts to verify order details are correct
+            ordHistPage.Verify_OrderHistoryPageDetails();
         }
+
 
         [TestCleanup]
         public void cleanMethod()
         {
-            Console.WriteLine("Test Cleanup");
+            System.Diagnostics.Debug.WriteLine("Test Cleanup - If I ever Get HERE");
 
-            if(TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
+            if (TestContext.CurrentTestOutcome == UnitTestOutcome.Failed)
             {
                 Image image = UITestControl.Desktop.CaptureImage();
                 image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" +
-                    TestContext.TestName + "Fail" + ".jpeg", ImageFormat.Jpeg);
+                    TestContext.TestName + "Fail" + HtmlExtensions.rndNum() + ".jpeg", ImageFormat.Jpeg);
             }
-            else if(TestContext.CurrentTestOutcome == UnitTestOutcome.Error)
+            else if (TestContext.CurrentTestOutcome == UnitTestOutcome.Error)
             {
                 Image image = UITestControl.Desktop.CaptureImage();
                 image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" +
-                    TestContext.TestName + "Error" + ".jpeg", ImageFormat.Jpeg);
+                    TestContext.TestName + "Error" + HtmlExtensions.rndNum() + ".jpeg", ImageFormat.Jpeg);
             }
             else if (TestContext.CurrentTestOutcome == UnitTestOutcome.Passed)
             {
                 Image image = UITestControl.Desktop.CaptureImage();
                 image.Save(@"C:\\Users\\JSteele.DESKTOP-6HUUN3S\\Pictures\\Screenpresso\\CUI_images\\" +
-                    TestContext.TestName + "Pass" + ".jpeg", ImageFormat.Jpeg);
+                    TestContext.TestName + "Pass" + HtmlExtensions.rndNum() + ".jpeg", ImageFormat.Jpeg);
             }
         }
 
@@ -112,5 +124,20 @@ namespace C3_CUIT
             }
         }
         private TestContext testContextInstance;
+
+        public UIMap UIMap
+        {
+            get
+            {
+                if ((this.map == null))
+                {
+                    this.map = new UIMap();
+                }
+
+                return this.map;
+            }
+        }
+
+        private UIMap map;
     }
 }

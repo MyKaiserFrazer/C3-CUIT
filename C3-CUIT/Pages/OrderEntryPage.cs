@@ -2,10 +2,6 @@
 using C3_CUIT.Extensions;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UITesting;
 
 namespace C3_CUIT.Pages
@@ -19,7 +15,6 @@ namespace C3_CUIT.Pages
         {
             SetParent("C3 - Order Entry");  // title of page need only contain part of this string. See SetParent in C3HtmlBase
         }
-
 
         /// <summary>
         /// Set the property for the "add item" button on the Order Entry page that brings up the Add Item
@@ -78,7 +73,17 @@ namespace C3_CUIT.Pages
                 return SetProperty<HtmlEdit>(PropertyType.Id, "txtRapidEntry_Quantity2");
             }
         }
-
+        /// <summary>
+        /// Set the property for the "CLear Cart" button on the Order Entry popup for 
+        /// Clears or Closes the Rapid Entry Grid Dialog.
+        /// </summary>
+        public HtmlCustom btnCancelCart
+        {
+            get
+            {
+                return SetProperty<HtmlCustom>(PropertyType.Id, "btnRapidEntry_StartOver");
+            }
+        }
         /// <summary>
         /// Set the property for the "add to cart" button on the Order Entry popup for 
         /// submitting items to the cart.
@@ -91,43 +96,42 @@ namespace C3_CUIT.Pages
             }
         }
 
-        /// <summary>
-        /// Click the "add item" button on the Order Entry page to bring up the cart popup
-        /// </summary>
-        public void OpenCart()
+        public HtmlCustom addPaymentLink
         {
-            HtmlExtensions.Click(btnAddItem);
+            get
+            {
+                return SetProperty<HtmlCustom>(PropertyType.Id, "winCheckoutPayment_AddPayment");
+            }
         }
 
-        /// <summary>
-        /// Enters an item into the cart. If one item is already there, then it enters the item on the 2nd row
-        /// </summary>
-        /// <param name="itemID"></param>
-        /// <param name="quantity"></param>
-        public void EnterCartItem(string itemID, string quantity)
+        public HtmlCustom discountSubmit
         {
-            if(txtItemId1.ValueAttribute == "")     // if one item is already in the cart, go to the next row
+            get
             {
-                HtmlExtensions.EnterText(txtItemId1, itemID);
-                HtmlExtensions.EnterText(txtQuantity1, quantity);
-            }
-            else
-            {
-                HtmlExtensions.EnterText(txtItemId2, itemID);
-                HtmlExtensions.EnterText(txtQuantity2, quantity);
+                return SetProperty<HtmlCustom>(PropertyType.Id, "winOrderEntry_SubmitDiscountOverride");
             }
         }
 
         /// <summary>
-        /// Search a row of the Shopping Cart Table for the product description.
+        /// Set the property for the "submit order" button on the Order Entry popup for 
+        /// submitting orders.
         /// </summary>
-        /// <param name="productDescription"></param>
-        /// <returns></returns>
-        private HtmlRow FindRowForProduct(string productDescription)
+        public HtmlCustom btnSubmitOrder
         {
-            HtmlRow productRow = new HtmlRow(this.ShoppingCartTable);
-            productRow.SearchProperties.Add(HtmlRow.PropertyNames.InnerText, productDescription, PropertyExpressionOperator.Contains);
-            return productRow;
+            get
+            {
+                return SetProperty<HtmlCustom>(PropertyType.Id, "btnOrderEntry_SubmitOrder");
+            }
+        }
+        /// <summary>
+        /// Cancel the Entire Order by ckicking this popup dialog
+        /// </summary>
+        public HtmlCustom cancelOrder
+        {
+            get
+            {
+                return SetProperty<HtmlCustom>(PropertyType.Id, "btnOrderEntry_CancelOrder");
+            }
         }
 
         /// <summary>
@@ -143,35 +147,238 @@ namespace C3_CUIT.Pages
             }
         }
 
-        // tbd
-        //public OrderEntryPage RemoveItemFromCart(string productDescription)
-        //{
-        //    var productRow = FindRowForProduct(productDescription);
-        //}
-
-        public bool IsProductInCart(string productDescription)
+        public HtmlCustom editPayment
         {
-            return FindRowForProduct(productDescription).TryFind();
-        }
-            
-        /// <summary>
-        /// Adds the items to the cart by clicking the "add to cart" button
-        /// </summary>
-        public void SubmitCart()
-        {
-            HtmlExtensions.Click(btnAddToCart);
+            get
+            {
+                return SetProperty<HtmlCustom>(PropertyType.Id, "hrefShowPaymentTab");
+            }
         }
 
         /// <summary>
-        /// Set the property for the "submit order" button on the Order Entry popup for 
-        /// submitting orders.
+        /// Set the property for the "Add Payment" button on the PaymentInformation TAB .
         /// </summary>
-        public HtmlButton btnSubmitOrder
+        public HtmlDiv btnAddPayment /// here is the issue
+        {
+            get
+            {
+                return SetProperty<HtmlDiv>(PropertyType.Id, "winCheckoutPayment_AddPayment");
+            }
+        }
+
+        /// <summary>
+        /// Set the property "Payment CC Type" button on the PaymentInformation TAB 
+        /// </summary>
+        public HtmlCustom enterNewCredCard
+        {
+            get
+            {
+                return SetProperty<HtmlCustom>(PropertyType.Id, "paymentForm_AddCreditCard");
+            }
+        }
+
+        /// <summary>
+        /// Set the property for the "Payment Description" for the ID of the Credit Card 
+        /// </summary>
+        public HtmlEdit paymentDescription
+        {
+            get
+            {
+                return SetProperty<HtmlEdit>(PropertyType.Id, "txtCreditCard_CustomersDescription");
+            }
+        }
+        public HtmlEdit nameOnCard
+        {
+            get
+            {
+                return SetProperty<HtmlEdit>(PropertyType.Id, "txtCreditCard_NameOnCard");
+            }
+        }
+
+        public HtmlEdit creditCardNumber
+        {
+            get
+            {
+                return SetProperty<HtmlEdit>(PropertyType.Id, "txtCreditCard_CreditCardNumber");
+            }
+        }
+
+        public HtmlEdit cvvCode
+        {
+            get
+            {
+                return SetProperty<HtmlEdit>(PropertyType.Id, "txtCreditCard_Cvv");
+            }
+        }
+
+        public HtmlComboBox expirationMonth
+        {
+            get
+            {
+                return SetProperty<HtmlComboBox>(PropertyType.Id, "ddlCreditCard_ExpireMonth");
+            }
+        }
+
+        public HtmlCustom submitCrediCardEntry
+        {
+            get
+            {
+                return SetProperty<HtmlCustom>(PropertyType.Id, "btnUpdateCreditCard");
+            }
+        }
+
+        public HtmlCustom submitPayment
+        {
+            get
+            {
+                return SetProperty<HtmlCustom>(PropertyType.Id, "btnSubmitPayment");
+            }
+        }
+        public HtmlComboBox expirationYear
+        {
+            get
+            {
+                return SetProperty<HtmlComboBox>(PropertyType.Id, "ddlCheckoutPayment_CreditCardExpireYear");
+            }
+        }
+
+        public HtmlButton submitOrder
         {
             get
             {
                 return SetProperty<HtmlButton>(PropertyType.Id, "btnOrderEntry_SubmitOrder");
             }
+        }
+
+        public HtmlCustom paymentInformationTAB
+        {
+            get
+            {
+                return SetProperty<HtmlCustom>(PropertyType.InnerText, "Payment Information");
+            }
+        }
+
+
+        public HtmlEdit defaultBillingName
+        {
+            get
+            {
+                return SetProperty<HtmlEdit>(PropertyType.Id, "txtName_DefaultBilling");
+            }
+        }
+
+
+        public void SubmiEditPayment()
+        {
+            HtmlExtensions.Click(editPayment);
+        }
+
+        /// <summary>
+        /// Complete the adding of items to the cart by clicking the "add to cart" button
+        /// </summary>
+        public void AddItemsToCart()
+        {
+            HtmlExtensions.Click(btnAddToCart);
+        }
+
+        /// <summary>
+        /// Click the "add item" button on the Order Entry page to bring up the cart popup
+        /// </summary>
+        public void OpenCart()
+        {
+            HtmlExtensions.Click(btnAddItem);
+        }
+
+
+        public void EnterCartItems()
+        {
+            int ItemID = 0;
+            int Quantity = 0;
+            int counter = 1;
+            int numberOfOrders = 5;     // number of products to enter into cart
+
+            // dummy data to enter into cart
+            String[,] OrderAarry = new string[,] { {"30","2"},{"40","2"},{"70","3"},{"160","4"},
+                {"190","1"},{"258","5"},{"340","2"},{"380","6"},{"1096","3"},{"410","2"},{"405","1"},
+                {"204","2"},{"610","3"},{"653","4"},{"150","5"},{"1376","6"},{"774","5"},{"777","4"},
+                {"1072","3"},{"175","2"},{"810","1"},{"1226","2"},{"3134","3"},{"3993","4"},{"3070","5"},
+                {"2922","6"} };
+
+            HtmlEdit orderGrid = new HtmlEdit(OrderEntryPage.ParentPage);
+
+            while ((OrderAarry[ItemID, Quantity]).Length != 0)
+            {
+                Quantity = 0;
+                orderGrid.SearchProperties[HtmlEdit.PropertyNames.Id] = "txtRapidEntry_ProductId" + counter;
+                Keyboard.SendKeys(orderGrid, OrderAarry[ItemID, Quantity]);
+                Quantity++;
+                orderGrid.SearchProperties[HtmlEdit.PropertyNames.Id] = "txtRapidEntry_Quantity" + counter;
+                Keyboard.SendKeys(orderGrid, OrderAarry[ItemID, Quantity]);
+                ItemID++;
+
+                if (numberOfOrders == ItemID)
+                    break;
+                counter++;
+            }
+
+            AddItemsToCart();
+            Playback.Wait(4000);
+        }
+
+        public void pmtInfo()
+        {
+
+            HtmlExtensions.Click(editPayment);
+
+            Mouse.Click(paymentInformationTAB);
+
+            HtmlCustom addAPaymentLink = new HtmlCustom(OrderEntryPage.ParentPage.CurrentDocumentWindow);
+            addAPaymentLink.SearchProperties["TagName"] = "A";
+            addAPaymentLink.SearchProperties["Id"] = "winCheckoutPayment_AddPayment";
+            addAPaymentLink.SearchProperties[UITestControl.PropertyNames.Name] = null;
+            addAPaymentLink.FilterProperties["Class"] = "buttonStrong window";
+            addAPaymentLink.FilterProperties["ControlDefinition"] = "class=\"buttonStrong window\" id=\"winCheck";
+            Playback.Wait(2000);
+            Mouse.Click(addAPaymentLink);
+
+            HtmlExtensions.Click(enterNewCredCard);
+            HtmlExtensions.EnterText(paymentDescription, "MyNewPayment");
+            HtmlExtensions.EnterText(nameOnCard, "FAKE CARDS");
+            HtmlExtensions.EnterText(creditCardNumber, "4112344112344113");
+            HtmlComboBox cboxEXPMonth = new HtmlComboBox(OrderEntryPage.ParentPage);
+            cboxEXPMonth.SearchProperties.Add(HtmlComboBox.PropertyNames.Id, "ddlCreditCard_ExpireMonth");
+            cboxEXPMonth.SelectedItem = "03 - March";
+
+            HtmlComboBox cboxEXPYear = new HtmlComboBox(OrderEntryPage.ParentPage);
+            cboxEXPYear.SearchProperties.Add(HtmlComboBox.PropertyNames.Id, "ddlCheckoutPayment_CreditCardExpireYear");
+            cboxEXPYear.SelectedItem = "2020";
+            HtmlExtensions.EnterText(cvvCode, "123");
+
+            HtmlExtensions.Click(submitCrediCardEntry);
+            Playback.Wait(5000);
+
+            HtmlCustom addPaymentDialog = new HtmlCustom(OrderEntryPage.ParentPage.CurrentDocumentWindow);
+            addPaymentDialog.SearchProperties[HtmlCustom.PropertyNames.InnerText] = "Add Payment";
+            addPaymentDialog.SearchProperties.Add(HtmlCustom.PropertyNames.Id, "btnSubmitPayment");
+            HtmlExtensions.Click(submitPayment);
+            Playback.Wait(8000);
+
+            HtmlCustom overviewTAB = new HtmlCustom(OrderEntryPage.ParentPage.CurrentDocumentWindow);
+            overviewTAB.SearchProperties[HtmlCustom.PropertyNames.InnerText] = "Overview";
+            Mouse.Click(overviewTAB);
+
+            Mouse.Click(paymentInformationTAB);
+            Mouse.Click(paymentInformationTAB);
+
+            //return new OrderHistoryPage();
+        }
+
+        public OrderHistoryPage submitCompleteOrder()
+        {
+            Playback.Wait(3000);
+            HtmlExtensions.Click(btnSubmitOrder);
+            Playback.Wait(10000);
+            return new OrderHistoryPage();
         }
     }
 }

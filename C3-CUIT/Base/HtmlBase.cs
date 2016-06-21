@@ -1,11 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace C3_CUIT.Base
 {
@@ -20,7 +15,7 @@ namespace C3_CUIT.Base
         {
             ParentPage.SearchProperties.Add("Name", title, PropertyExpressionOperator.Contains);
         }
-        
+
         public enum PropertyType
         {
             Name,
@@ -29,12 +24,14 @@ namespace C3_CUIT.Base
             DisplayText,
             LinkText,
             InnerText,
-            Href
+            Href,
+            TagName
         }
 
         /// <summary>
-        /// Object creator. Takes in a HtmlControl property type and identification value (like btnLogin) and creates an instance of it and 
-        /// sets the SearchProperty for the property being passed in. The constraint is 'HtmlControl'. Code reuse principle.
+        /// Object creator. This uses C# Generics, takes in a HtmlControl property type and identification value 
+        /// (like btnLogin) and creates an instance of it and sets the SearchProperty for the property being 
+        /// passed in. The constraint is 'HtmlControl'. Code reuse principle.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="property"></param>
@@ -58,7 +55,10 @@ namespace C3_CUIT.Base
                 control.SearchProperties.Add("Href", identificationValue);          // another one I added, 'Href'
             if (property == PropertyType.InnerText)
                 control.SearchProperties[HtmlControl.PropertyNames.InnerText] = identificationValue;
+            if (property == PropertyType.TagName)
+                control.SearchProperties[HtmlControl.PropertyNames.TagName] = identificationValue;
             return control;
         }
+
     }
 }

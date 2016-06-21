@@ -1,10 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UITesting.HtmlControls;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace C3_CUIT.Extensions
 {
@@ -38,18 +35,22 @@ namespace C3_CUIT.Extensions
         /// </summary>
         /// <param name="control"></param>
         /// <param name="text"></param>
-        public static void addRandomName(this HtmlControl control, string text)
+        public static void addRandomName(this HtmlControl control)
         {
             control.SetProperty("Text", "");    // clear out what might already be there
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            string nameu = new string(Enumerable.Repeat(chars, 10)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
             Random rnd = new Random();          // instantiate a Random() object
             int ran = rnd.Next(10000, 99999);   // get a 5 digit random number
-            Keyboard.SendKeys(text + ran);      // append the number to text
+            Keyboard.SendKeys(nameu + ran);      // append the number to text
         }
 
         public static int rndNum()
         {
             Random rnd = new Random();
-            int rNum = rnd.Next(100, 999);
+            int rNum = rnd.Next(1000, 9999);
             return rNum;
         }
     }
